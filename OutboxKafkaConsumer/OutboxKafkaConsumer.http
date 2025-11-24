@@ -1,0 +1,6 @@
+@OutboxKafkaConsumer_HostAddress = http://localhost:5010
+
+GET {{OutboxKafkaConsumer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

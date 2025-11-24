@@ -1,0 +1,32 @@
+﻿using Microsoft.EntityFrameworkCore;
+using OutnoxKafkaDemo.DataAccess.Entities;
+
+namespace OutnoxKafkaDemo.DataAccess.Contexts;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.ToTable("Order");
+            entity.HasKey(e => e.Order_Id);
+        });
+
+        modelBuilder.Entity<OutboxMessage>(entity =>
+        {
+            entity.ToTable("Outbox_Message");
+            entity.HasKey(e => e.Event_Id);
+        });
+
+        base.OnModelCreating(modelBuilder);
+    }
+
+    public DbSet<OutboxMessage> OutboxMessages { get; set; }
+
+    public DbSet<Order> Orders { get; set; }
+}

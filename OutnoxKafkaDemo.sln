@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutnoxKafkaDemo", "OutnoxKafkaDemo\OutnoxKafkaDemo.csproj", "{FE2925E5-27A2-4E89-967F-B2524E66EC3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafkaConsumer", "OutboxKafkaConsumer\OutboxKafkaConsumer.csproj", "{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE2925E5-27A2-4E89-967F-B2524E66EC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2925E5-27A2-4E89-967F-B2524E66EC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2925E5-27A2-4E89-967F-B2524E66EC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2925E5-27A2-4E89-967F-B2524E66EC3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
