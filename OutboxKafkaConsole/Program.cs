@@ -5,6 +5,7 @@ namespace OutboxKafkaConsole;
 
 class Program
 {
+    private const int RequestCount = 1_000_000;
     private const string RequestUri = "http://localhost:5014";
     private const string CreateOrderRequest = $"{RequestUri}/api/Order/CreateOrder";
 
@@ -12,8 +13,7 @@ class Program
     {
         Console.WriteLine("Start sending messages to OutboxKafka... Press ENTER to start");
         Console.ReadLine();
-        const int requestCount = 1_000_000;
-        var messages = CreateMessages(requestCount);
+        var messages = CreateMessages(RequestCount);
         await SendMessages(CreateOrderRequest, messages);
         Console.WriteLine("Sending messages complete.");
     }
