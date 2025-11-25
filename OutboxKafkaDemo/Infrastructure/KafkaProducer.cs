@@ -10,7 +10,7 @@ public class KafkaProducer : IKafkaProducer
 {
     private readonly ProducerConfig _producerConfig;
     private readonly IOutboxMessageRepository _outboxRepository;
-    private readonly string topic = "test";
+    private const string Topic = "test";
 
     public KafkaProducer(IOutboxMessageRepository outboxRepository, IOptions<ProducerConfigSettings> options)
     {
@@ -18,7 +18,7 @@ public class KafkaProducer : IKafkaProducer
 
         _producerConfig = new ProducerConfig
         {
-            BootstrapServers = options.Value.BootstrapServers, 
+            BootstrapServers = options.Value.BootstrapServers,
             ClientId = options.Value.ClientId
         };
 
@@ -37,7 +37,7 @@ public class KafkaProducer : IKafkaProducer
         try
         {
             var result = await producer.ProduceAsync
-            (topic, new Message<Null, string>
+            (Topic, new Message<Null, string>
             {
                 Value = message.Payload
             });
