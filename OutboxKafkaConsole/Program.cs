@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using OutboxKafka.Common;
 
 namespace OutboxKafkaConsole;
 
@@ -24,9 +25,9 @@ class Program
         {
             var order = new Order
             {
-                Order_Id = i + 1,
-                Customer_Id = 45,
-                Order_Date = new DateTime(2024, 6, 5),
+                OrderId = i + 1,
+                CustomerId = 45,
+                OrderDate = new DateTime(2024, 6, 5),
                 Amount = 4567
             };
             messages.Add(JsonSerializer.Serialize(order));

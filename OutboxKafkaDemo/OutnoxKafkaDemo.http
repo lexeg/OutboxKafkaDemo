@@ -1,6 +1,0 @@
-@OutnoxKafkaDemo_HostAddress = http://localhost:5014
-
-GET {{OutnoxKafkaDemo_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

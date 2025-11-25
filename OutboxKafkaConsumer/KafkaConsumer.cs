@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Confluent.Kafka;
+using OutboxKafka.Common;
 
 namespace OutboxKafkaConsumer;
 
@@ -31,7 +32,7 @@ public class KafkaConsumer : IKafkaConsumer
                     {
                         var consumer = consumerBuilder.Consume(cancelToken.Token);
                         var order = JsonSerializer.Deserialize<Order>(consumer.Message.Value);
-                        Console.WriteLine($"Order: {order.Order_Id}, {order.Customer_Id}, {order.Order_Date}, {order.Order_Date}");
+                        Console.WriteLine($"Order: {order.OrderId}, {order.CustomerId}, {order.OrderDate}, {order.OrderDate}");
                     }
                 }
                 catch (OperationCanceledException)
