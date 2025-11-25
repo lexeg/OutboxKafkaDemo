@@ -38,7 +38,7 @@ public class KafkaProducer : IKafkaProducer
             var result = await producer.ProduceAsync
             (topic, new Message<Null, string>
             {
-                Value = message.Event_Payload
+                Value = message.Payload
             });
 
             if (result.Status == PersistenceStatus.Persisted)

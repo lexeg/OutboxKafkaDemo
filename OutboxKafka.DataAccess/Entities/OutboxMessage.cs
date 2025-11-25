@@ -1,12 +1,18 @@
-﻿namespace OutboxKafka.DataAccess.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OutboxKafka.DataAccess.Entities;
 
 public class OutboxMessage
 {
-    public long Event_Id { get; set; }
+    [Column("Event_Id")]
+    public long Id { get; set; }
 
-    public string Event_Payload { get; set; }
+    [Column("Event_Payload")]
+    public string Payload { get; set; }
 
-    public DateTime Event_Date { get; set; }
+    [Column("Event_Date")]
+    public DateTime Date { get; set; }
 
+    [Column("IsMessageDispatched")]
     public bool IsMessageDispatched { get; set; }
 }

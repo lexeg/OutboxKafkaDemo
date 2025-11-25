@@ -14,13 +14,13 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.ToTable("Order");
-            entity.HasKey(e => e.Order_Id);
+            entity.HasKey(e => e.Id);
         });
 
         modelBuilder.Entity<OutboxMessage>(entity =>
         {
             entity.ToTable("Outbox_Message");
-            entity.HasKey(e => e.Event_Id);
+            entity.HasKey(e => e.Id);
         });
 
         base.OnModelCreating(modelBuilder);

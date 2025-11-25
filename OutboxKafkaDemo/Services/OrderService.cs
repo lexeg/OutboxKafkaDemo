@@ -21,7 +21,7 @@ public class OrderService : IOrderService
     public async Task<Order> GetOrderAsync(int Id)
     {
         return await Task.FromResult(
-            _context.Orders.FirstOrDefault(x => x.Order_Id == Id));
+            _context.Orders.FirstOrDefault(x => x.Id == Id));
     }
 
     public async Task CreateOrderAsync(Order order)
@@ -35,8 +35,8 @@ public class OrderService : IOrderService
 
             var outboxMessage = new OutboxMessage
             {
-                Event_Payload = JsonSerializer.Serialize(order),
-                Event_Date = DateTime.Now,
+                Payload = JsonSerializer.Serialize(order),
+                Date = DateTime.Now,
                 IsMessageDispatched = false
             };
 

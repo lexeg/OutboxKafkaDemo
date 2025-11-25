@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore;
 using OutboxKafka.DataAccess.Contexts;
 using OutboxKafka.DataAccess.Entities;
 
@@ -26,31 +27,26 @@ public class OutboxMessageRepository : IOutboxMessageRepository
 
     public async Task<IReadOnlyCollection<OutboxMessage>> GetUnsentMessagesAsync()
     {
-        List<OutboxMessage>? unsentMessages =
-            _context.OutboxMessages.Where
-                (e => e.IsMessageDispatched != true).ToList();
-        ReadOnlyCollection<OutboxMessage>? result = new ReadOnlyCollection
-            <OutboxMessage>(unsentMessages);
+        var unsentMessages = await _context.OutboxMessages.Where(e => e.IsMessageDispatched != true).ToListAsync();
+        var result = new ReadOnlyCollection<OutboxMessage>(unsentMessages);
         return result;
     }
 
     public async Task<IReadOnlyCollection<OutboxMessage>> GetMessagesByIdsAsync(IEnumerable<int> ids)
     {
-        List<OutboxMessage>? orders = _context.OutboxMessages.ToList();
-        var readOnlyOrders = new ReadOnlyCollection<OutboxMessage>(orders);
-        return readOnlyOrders;
+        var orders = await _context.OutboxMessages.ToListAsync();
+        return new ReadOnlyCollection<OutboxMessage>(orders);
     }
 
     public async Task UpdateAsync(OutboxMessage message, bool status)
     {
-        var entity = _context.OutboxMessages.FirstOrDefault
-            (o => o.Event_Id == message.Event_Id);
+        var entity = _context.OutboxMessages.FirstOrDefault(o => o.Id == message.Id);
 
         if (entity != null)
         {
-            entity.Event_Id = message.Event_Id;
-            entity.Event_Date = message.Event_Date;
-            entity.Event_Payload = message.Event_Payload;
+            entity.Id = message.Id;
+            entity.Date = message.Date;
+            entity.Payload = message.Payload;
             entity.IsMessageDispatched = message.IsMessageDispatched;
             await _context.SaveChangesAsync();
         }

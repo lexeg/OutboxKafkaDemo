@@ -44,7 +44,7 @@ public class OutboxMessageProcessor : BackgroundService
                     await _producer.SendMessageToKafkaAsync(outboxMessage);
 
                     outboxMessage.IsMessageDispatched = true;
-                    outboxMessage.Event_Date = DateTime.UtcNow;
+                    outboxMessage.Date = DateTime.UtcNow;
 
                     _dbContext.OutboxMessages.Update(outboxMessage);
                     await _dbContext.SaveChangesAsync();
