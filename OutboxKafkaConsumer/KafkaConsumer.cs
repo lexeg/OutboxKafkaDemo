@@ -1,22 +1,28 @@
 ﻿using System.Text.Json;
 using Confluent.Kafka;
+using Microsoft.Extensions.Options;
 using OutboxKafka.Common;
+using OutboxKafkaConsumer.Configuration;
 
 namespace OutboxKafkaConsumer;
 
 public class KafkaConsumer : IKafkaConsumer
 {
+    private readonly ConsumerConfigSettings _consumerConfigSettings;
     private const string Topic = "test";
-    private const string GroupId = "test_group";
-    private const string BootstrapServers = "localhost:9092";
+
+    public KafkaConsumer(IOptions<ConsumerConfigSettings> options)
+    {
+        _consumerConfigSettings = options.Value;
+    }
 
     public Task ConsumeMessagesAsync(CancellationToken cancellationToken)
     {
         var config = new ConsumerConfig
         {
-            GroupId = GroupId,
-            BootstrapServers = BootstrapServers,
-            AutoOffsetReset = AutoOffsetReset.Earliest
+            GroupId = _consumerConfigSettings.GroupId,
+            BootstrapServers = _consumerConfigSettings.BootstrapServers,
+            AutoOffsetReset = _consumerConfigSettings.AutoOffsetReset
         };
 
         using var consumerBuilder = new ConsumerBuilder<Ignore, string>(config).Build();
