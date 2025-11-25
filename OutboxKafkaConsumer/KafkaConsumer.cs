@@ -6,44 +6,38 @@ namespace OutboxKafkaConsumer;
 
 public class KafkaConsumer : IKafkaConsumer
 {
-    private readonly string topic = "test";
-    private readonly string groupId = "test_group";
-    private readonly string bootstrapServers = "localhost:9092";
+    private const string Topic = "test";
+    private const string GroupId = "test_group";
+    private const string BootstrapServers = "localhost:9092";
 
-    public async Task ConsumeMessagesAsync(CancellationToken cancellationToken)
+    public Task ConsumeMessagesAsync(CancellationToken cancellationToken)
     {
         var config = new ConsumerConfig
         {
-            GroupId = groupId,
-            BootstrapServers = bootstrapServers,
+            GroupId = GroupId,
+            BootstrapServers = BootstrapServers,
             AutoOffsetReset = AutoOffsetReset.Earliest
         };
 
+        using var consumerBuilder = new ConsumerBuilder<Ignore, string>(config).Build();
+        consumerBuilder.Subscribe(Topic);
+        var cancelToken = new CancellationTokenSource();
+
         try
         {
-            using (var consumerBuilder = new ConsumerBuilder<Ignore, string>(config).Build())
+            while (true)
             {
-                consumerBuilder.Subscribe(topic);
-                var cancelToken = new CancellationTokenSource();
-
-                try
-                {
-                    while (true)
-                    {
-                        var consumer = consumerBuilder.Consume(cancelToken.Token);
-                        var order = JsonSerializer.Deserialize<Order>(consumer.Message.Value);
-                        Console.WriteLine($"Order: {order.OrderId}, {order.CustomerId}, {order.OrderDate}, {order.OrderDate}");
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    consumerBuilder.Close();
-                }
+                var consumer = consumerBuilder.Consume(cancelToken.Token);
+                var order = JsonSerializer.Deserialize<Order>(consumer.Message.Value);
+                Console.WriteLine(
+                    $"Order: {order.OrderId}, {order.CustomerId}, {order.OrderDate}, {order.OrderDate}");
             }
         }
-        catch
+        catch (OperationCanceledException)
         {
-            throw;
+            consumerBuilder.Close();
         }
+
+        return Task.CompletedTask;
     }
 }
