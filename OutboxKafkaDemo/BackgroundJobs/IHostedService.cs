@@ -1,4 +1,4 @@
-﻿namespace OutnoxKafkaDemo.BackgroundJobs;
+﻿namespace OutboxKafkaDemo.BackgroundJobs;
 
 /*public interface IHostedService
 {

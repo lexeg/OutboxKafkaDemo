@@ -1,6 +1,6 @@
-﻿using OutnoxKafkaDemo.DataAccess.Entities;
+﻿using OutboxKafkaDemo.DataAccess.Entities;
 
-namespace OutnoxKafkaDemo.DataAccess.Repositories;
+namespace OutboxKafkaDemo.DataAccess.Repositories;
 
 public interface IOutboxMessageRepository
 {

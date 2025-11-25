@@ -1,8 +1,8 @@
-﻿using OutnoxKafkaDemo.DataAccess.Contexts;
-using OutnoxKafkaDemo.DataAccess.Entities;
-using OutnoxKafkaDemo.Infrastructure;
+﻿using OutboxKafkaDemo.DataAccess.Contexts;
+using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafkaDemo.Infrastructure;
 
-namespace OutnoxKafkaDemo.BackgroundJobs;
+namespace OutboxKafkaDemo.BackgroundJobs;
 
 public class OutboxMessageProcessor : BackgroundService
 {

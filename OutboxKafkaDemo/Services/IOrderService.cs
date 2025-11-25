@@ -1,6 +1,6 @@
-﻿using OutnoxKafkaDemo.DataAccess.Entities;
+﻿using OutboxKafkaDemo.DataAccess.Entities;
 
-namespace OutnoxKafkaDemo.Services;
+namespace OutboxKafkaDemo.Services;
 
 public interface IOrderService
 {

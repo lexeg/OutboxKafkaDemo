@@ -1,4 +1,4 @@
-namespace OutnoxKafkaDemo;
+namespace OutboxKafkaDemo;
 
 public class WeatherForecast
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OutnoxKafkaDemo.DataAccess.Entities;
-using OutnoxKafkaDemo.Services;
+using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafkaDemo.Services;
 
-namespace OutnoxKafkaDemo.Controllers;
+namespace OutboxKafkaDemo.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

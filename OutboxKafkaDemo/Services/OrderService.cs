@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
-using OutnoxKafkaDemo.DataAccess.Contexts;
-using OutnoxKafkaDemo.DataAccess.Entities;
+using OutboxKafkaDemo.DataAccess.Contexts;
+using OutboxKafkaDemo.DataAccess.Entities;
 
-namespace OutnoxKafkaDemo.Services;
+namespace OutboxKafkaDemo.Services;
 
 public class OrderService : IOrderService
 {

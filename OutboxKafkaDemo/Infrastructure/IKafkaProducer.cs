@@ -1,6 +1,6 @@
-﻿using OutnoxKafkaDemo.DataAccess.Entities;
+﻿using OutboxKafkaDemo.DataAccess.Entities;
 
-namespace OutnoxKafkaDemo.Infrastructure;
+namespace OutboxKafkaDemo.Infrastructure;
 
 public interface IKafkaProducer
 {

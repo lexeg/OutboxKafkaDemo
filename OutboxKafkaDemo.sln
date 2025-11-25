@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutnoxKafkaDemo", "OutnoxKafkaDemo\OutnoxKafkaDemo.csproj", "{FE2925E5-27A2-4E89-967F-B2524E66EC3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafkaDemo", "OutboxKafkaDemo\OutboxKafkaDemo.csproj", "{FE2925E5-27A2-4E89-967F-B2524E66EC3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafkaConsumer", "OutboxKafkaConsumer\OutboxKafkaConsumer.csproj", "{5CFD07CC-5F6A-4B9B-82D8-3A0B6CD34F27}"
 EndProject

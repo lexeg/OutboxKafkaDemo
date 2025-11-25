@@ -1,4 +1,4 @@
-﻿namespace OutnoxKafkaDemo.DataAccess.Entities;
+﻿namespace OutboxKafkaDemo.DataAccess.Entities;
 
 public class OutboxMessage
 {

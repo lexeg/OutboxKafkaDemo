@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using OutnoxKafkaDemo.BackgroundJobs;
-using OutnoxKafkaDemo.DataAccess.Contexts;
-using OutnoxKafkaDemo.DataAccess.Repositories;
-using OutnoxKafkaDemo.Infrastructure;
-using OutnoxKafkaDemo.Services;
+using OutboxKafkaDemo.BackgroundJobs;
+using OutboxKafkaDemo.DataAccess.Contexts;
+using OutboxKafkaDemo.DataAccess.Repositories;
+using OutboxKafkaDemo.Infrastructure;
+using OutboxKafkaDemo.Services;
 
-namespace OutnoxKafkaDemo;
+namespace OutboxKafkaDemo;
 
 public class Program
 {

@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using Confluent.Kafka;
-using OutnoxKafkaDemo.DataAccess.Entities;
-using OutnoxKafkaDemo.DataAccess.Repositories;
+using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafkaDemo.DataAccess.Repositories;
 
-namespace OutnoxKafkaDemo.Infrastructure;
+namespace OutboxKafkaDemo.Infrastructure;
 
 public class KafkaProducer : IKafkaProducer
 {
