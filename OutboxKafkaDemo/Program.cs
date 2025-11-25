@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using OutboxKafka.DataAccess.Contexts;
+using OutboxKafka.DataAccess.Repositories;
 using OutboxKafkaDemo.BackgroundJobs;
-using OutboxKafkaDemo.DataAccess.Contexts;
-using OutboxKafkaDemo.DataAccess.Repositories;
 using OutboxKafkaDemo.Infrastructure;
 using OutboxKafkaDemo.Services;
 

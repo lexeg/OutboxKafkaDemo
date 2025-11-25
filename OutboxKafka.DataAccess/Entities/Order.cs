@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OutboxKafkaDemo.DataAccess.Entities;
+namespace OutboxKafka.DataAccess.Entities;
 
 public class Order
 {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using OutboxKafkaDemo.DataAccess.Contexts;
-using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafka.DataAccess.Contexts;
+using OutboxKafka.DataAccess.Entities;
 
 namespace OutboxKafkaDemo.Services;
 

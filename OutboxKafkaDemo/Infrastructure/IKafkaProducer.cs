@@ -1,4 +1,4 @@
-﻿using OutboxKafkaDemo.DataAccess.Entities;
+﻿using OutboxKafka.DataAccess.Entities;
 
 namespace OutboxKafkaDemo.Infrastructure;
 

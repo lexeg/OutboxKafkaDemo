@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafka.DataAccess.Entities;
 
-namespace OutboxKafkaDemo.DataAccess.Contexts;
+namespace OutboxKafka.DataAccess.Contexts;
 
 public class ApplicationDbContext : DbContext
 {

@@ -1,5 +1,5 @@
-﻿using OutboxKafkaDemo.DataAccess.Contexts;
-using OutboxKafkaDemo.DataAccess.Entities;
+﻿using OutboxKafka.DataAccess.Contexts;
+using OutboxKafka.DataAccess.Entities;
 using OutboxKafkaDemo.Infrastructure;
 
 namespace OutboxKafkaDemo.BackgroundJobs;

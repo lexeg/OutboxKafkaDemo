@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafkaConsole", "Outbo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafka.Common", "OutboxKafka.Common\OutboxKafka.Common.csproj", "{D2DB610D-EDAC-4C28-A37D-FA7C3FF6AE64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxKafka.DataAccess", "OutboxKafka.DataAccess\OutboxKafka.DataAccess.csproj", "{43B800C5-E5D9-48BF-818E-F59D09EE0224}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{D2DB610D-EDAC-4C28-A37D-FA7C3FF6AE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2DB610D-EDAC-4C28-A37D-FA7C3FF6AE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2DB610D-EDAC-4C28-A37D-FA7C3FF6AE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B800C5-E5D9-48BF-818E-F59D09EE0224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B800C5-E5D9-48BF-818E-F59D09EE0224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B800C5-E5D9-48BF-818E-F59D09EE0224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B800C5-E5D9-48BF-818E-F59D09EE0224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

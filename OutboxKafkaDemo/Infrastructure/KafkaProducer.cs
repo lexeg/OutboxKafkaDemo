@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Confluent.Kafka;
-using OutboxKafkaDemo.DataAccess.Entities;
-using OutboxKafkaDemo.DataAccess.Repositories;
+using OutboxKafka.DataAccess.Entities;
+using OutboxKafka.DataAccess.Repositories;
 
 namespace OutboxKafkaDemo.Infrastructure;
 

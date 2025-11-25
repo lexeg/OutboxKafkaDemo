@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafka.DataAccess.Entities;
 using OutboxKafkaDemo.Services;
 
 namespace OutboxKafkaDemo.Controllers;

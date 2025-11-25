@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using OutboxKafkaDemo.DataAccess.Contexts;
-using OutboxKafkaDemo.DataAccess.Entities;
+using OutboxKafka.DataAccess.Contexts;
+using OutboxKafka.DataAccess.Entities;
 
-namespace OutboxKafkaDemo.DataAccess.Repositories;
+namespace OutboxKafka.DataAccess.Repositories;
 
 public class OutboxMessageRepository : IOutboxMessageRepository
 {
