@@ -11,6 +11,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -18,7 +19,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
         builder.Services.AddScoped<IOrderService, OrderService>();
         builder.Services.AddScoped<IOutboxMessageRepository, OutboxMessageRepository>();

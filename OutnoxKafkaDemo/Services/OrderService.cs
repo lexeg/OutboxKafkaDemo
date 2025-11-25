@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
 using OutnoxKafkaDemo.DataAccess.Contexts;
 using OutnoxKafkaDemo.DataAccess.Entities;
 
@@ -32,10 +31,7 @@ public class OrderService : IOrderService
         try
         {
             _context.Orders.Add(order);
-            _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.[Order] ON;");
             await _context.SaveChangesAsync();
-            _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.[Order] OFF;");
-            // await _context.SaveChangesAsync();
 
             var outboxMessage = new OutboxMessage
             {
