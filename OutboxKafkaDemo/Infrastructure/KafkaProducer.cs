@@ -1,7 +1,8 @@
-﻿using System.Net;
-using Confluent.Kafka;
+﻿using Confluent.Kafka;
+using Microsoft.Extensions.Options;
 using OutboxKafka.DataAccess.Entities;
 using OutboxKafka.DataAccess.Repositories;
+using OutboxKafkaDemo.Configuration;
 
 namespace OutboxKafkaDemo.Infrastructure;
 
@@ -11,14 +12,14 @@ public class KafkaProducer : IKafkaProducer
     private readonly IOutboxMessageRepository _outboxRepository;
     private readonly string topic = "test";
 
-    public KafkaProducer(IOutboxMessageRepository outboxRepository)
+    public KafkaProducer(IOutboxMessageRepository outboxRepository, IOptions<ProducerConfigSettings> options)
     {
         _outboxRepository = outboxRepository;
 
         _producerConfig = new ProducerConfig
         {
-            BootstrapServers = "localhost:9092", 
-            ClientId = Dns.GetHostName()
+            BootstrapServers = options.Value.BootstrapServers, 
+            ClientId = options.Value.ClientId
         };
 
         _outboxRepository = outboxRepository;

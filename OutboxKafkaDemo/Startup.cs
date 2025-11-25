@@ -2,6 +2,7 @@
 using OutboxKafka.DataAccess.Contexts;
 using OutboxKafka.DataAccess.Repositories;
 using OutboxKafkaDemo.BackgroundJobs;
+using OutboxKafkaDemo.Configuration;
 using OutboxKafkaDemo.Infrastructure;
 using OutboxKafkaDemo.Services;
 
@@ -12,6 +13,9 @@ public class Startup(IConfiguration configuration)
     public void ConfigureServices(IServiceCollection services)
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+        services.Configure<ProducerConfigSettings>(configuration.GetSection(ProducerConfigSettings.Key));
+
         services.AddControllers();
         services.AddDbContext<ApplicationDbContext>(options =>
         {
