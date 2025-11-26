@@ -1,5 +1,4 @@
 ﻿using OutboxKafka.DataAccess.Contexts;
-using OutboxKafka.DataAccess.Entities;
 using OutboxKafkaDemo.Infrastructure;
 
 namespace OutboxKafkaDemo.BackgroundJobs;
@@ -26,37 +25,28 @@ public class OutboxMessageProcessor : BackgroundService
 
     private async Task PublishOutboxMessagesAsync(CancellationToken cancellationToken)
     {
-        try
+        using var scope = _scopeFactory.CreateScope();
+        _producer = scope.ServiceProvider.GetRequiredService<IKafkaProducer>();
+        await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        var entities = dbContext.OutboxMessages.Where(om => om.IsMessageDispatched != true).ToList();
+
+        foreach (var entity in entities)
         {
-            using var scope = _scopeFactory.CreateScope();
-            _producer = scope.ServiceProvider.GetRequiredService<IKafkaProducer>();
-            await using var _dbContext =
-                scope.ServiceProvider.GetRequiredService
-                    <ApplicationDbContext>();
-
-            var entities = _dbContext.OutboxMessages.Where(om => om.IsMessageDispatched != true).ToList();
-
-            foreach (var entity in entities)
+            try
             {
-                try
-                {
-                    await _producer.SendMessageToKafkaAsync(entity);
+                await _producer.SendMessageToKafkaAsync(entity);
 
-                    entity.IsMessageDispatched = true;
-                    entity.Date = DateTime.UtcNow;
+                entity.IsMessageDispatched = true;
+                entity.Date = DateTime.UtcNow;
 
-                    _dbContext.OutboxMessages.Update(entity);
-                    await _dbContext.SaveChangesAsync();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                dbContext.OutboxMessages.Update(entity);
+                await dbContext.SaveChangesAsync(cancellationToken);
             }
-        }
-        catch
-        {
-            throw;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
