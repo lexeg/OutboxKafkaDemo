@@ -4,5 +4,5 @@ namespace OutboxKafkaDemo.Infrastructure;
 
 public interface IKafkaProducer
 {
-    Task SendMessageToKafkaAsync(OutboxMessage message);
+    Task SendMessageToKafkaAsync(OutboxMessageEntity entity);
 }

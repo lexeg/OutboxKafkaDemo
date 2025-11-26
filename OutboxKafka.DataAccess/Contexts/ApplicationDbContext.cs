@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OutboxKafka.DataAccess.Configurations;
 using OutboxKafka.DataAccess.Entities;
 
 namespace OutboxKafka.DataAccess.Contexts;
@@ -11,22 +12,12 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Order>(entity =>
-        {
-            entity.ToTable("Order");
-            entity.HasKey(e => e.Id);
-        });
-
-        modelBuilder.Entity<OutboxMessage>(entity =>
-        {
-            entity.ToTable("Outbox_Message");
-            entity.HasKey(e => e.Id);
-        });
-
+        modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new OutboxMessageEntityConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<OutboxMessage> OutboxMessages { get; set; }
+    public DbSet<OutboxMessageEntity> OutboxMessages { get; set; }
 
-    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderEntity> Orders { get; set; }
 }

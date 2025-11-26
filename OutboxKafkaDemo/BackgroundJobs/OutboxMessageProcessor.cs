@@ -34,19 +34,18 @@ public class OutboxMessageProcessor : BackgroundService
                 scope.ServiceProvider.GetRequiredService
                     <ApplicationDbContext>();
 
-            List<OutboxMessage> messages = _dbContext.OutboxMessages.Where
-                (om => om.IsMessageDispatched != true).ToList();
+            var entities = _dbContext.OutboxMessages.Where(om => om.IsMessageDispatched != true).ToList();
 
-            foreach (OutboxMessage outboxMessage in messages)
+            foreach (var entity in entities)
             {
                 try
                 {
-                    await _producer.SendMessageToKafkaAsync(outboxMessage);
+                    await _producer.SendMessageToKafkaAsync(entity);
 
-                    outboxMessage.IsMessageDispatched = true;
-                    outboxMessage.Date = DateTime.UtcNow;
+                    entity.IsMessageDispatched = true;
+                    entity.Date = DateTime.UtcNow;
 
-                    _dbContext.OutboxMessages.Update(outboxMessage);
+                    _dbContext.OutboxMessages.Update(entity);
                     await _dbContext.SaveChangesAsync();
                 }
                 catch (Exception e)

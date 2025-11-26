@@ -4,7 +4,7 @@ namespace OutboxKafka.DataAccess.Repositories;
 
 public interface IOutboxMessageRepository
 {
-    Task<IReadOnlyCollection<OutboxMessage>> GetUnsentMessagesAsync();
-    Task<IReadOnlyCollection<OutboxMessage>> GetMessagesByIdsAsync(IEnumerable<int> ids);
-    Task UpdateAsync(OutboxMessage message, bool status);
+    Task<IReadOnlyCollection<OutboxMessageEntity>> GetUnsentMessagesAsync();
+    Task<IReadOnlyCollection<OutboxMessageEntity>> GetMessagesByIdsAsync(IEnumerable<int> ids);
+    Task UpdateAsync(OutboxMessageEntity entity, bool status);
 }

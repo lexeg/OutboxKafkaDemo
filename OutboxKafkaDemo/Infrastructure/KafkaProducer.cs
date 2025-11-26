@@ -25,11 +25,11 @@ public class KafkaProducer : IKafkaProducer
         _outboxRepository = outboxRepository;
     }
 
-    public async Task SendMessageToKafkaAsync(OutboxMessage message)
+    public async Task SendMessageToKafkaAsync(OutboxMessageEntity entity)
     {
-        if (message == null)
+        if (entity == null)
         {
-            throw new ArgumentNullException(nameof(message));
+            throw new ArgumentNullException(nameof(entity));
         }
 
         using var producer = new ProducerBuilder<Null, string>(_producerConfig).Build();
@@ -39,17 +39,17 @@ public class KafkaProducer : IKafkaProducer
             var result = await producer.ProduceAsync
             (Topic, new Message<Null, string>
             {
-                Value = message.Payload
+                Value = entity.Payload
             });
 
             if (result.Status == PersistenceStatus.Persisted)
             {
-                await _outboxRepository.UpdateAsync(message, true);
+                await _outboxRepository.UpdateAsync(entity, true);
             }
         }
         catch (Exception)
         {
-            await _outboxRepository.UpdateAsync(message, false);
+            await _outboxRepository.UpdateAsync(entity, false);
         }
     }
 }

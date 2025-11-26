@@ -13,34 +13,34 @@ public class OrderService : IOrderService
         _context = context;
     }
 
-    public async Task<List<Order>> GetAllOrdersAsync()
+    public async Task<List<OrderEntity>> GetAllOrdersAsync()
     {
-        return await Task.FromResult(_context.Orders.ToList<Order>());
+        return await Task.FromResult(_context.Orders.ToList());
     }
 
-    public async Task<Order> GetOrderAsync(int Id)
+    public async Task<OrderEntity> GetOrderAsync(int Id)
     {
         return await Task.FromResult(
             _context.Orders.FirstOrDefault(x => x.Id == Id));
     }
 
-    public async Task CreateOrderAsync(Order order)
+    public async Task CreateOrderAsync(OrderEntity entity)
     {
         using var transaction = _context.Database.BeginTransaction();
 
         try
         {
-            _context.Orders.Add(order);
+            _context.Orders.Add(entity);
             await _context.SaveChangesAsync();
 
-            var outboxMessage = new OutboxMessage
+            var outboxMessageEntity = new OutboxMessageEntity
             {
-                Payload = JsonSerializer.Serialize(order),
+                Payload = JsonSerializer.Serialize(entity),
                 Date = DateTime.Now,
                 IsMessageDispatched = false
             };
 
-            _context.OutboxMessages.Add(outboxMessage);
+            _context.OutboxMessages.Add(outboxMessageEntity);
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();

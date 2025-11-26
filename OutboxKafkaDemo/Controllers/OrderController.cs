@@ -16,21 +16,21 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("GetOrders")]
-    public async Task<List<Order>> GetOrders()
+    public async Task<List<OrderEntity>> GetOrders()
     {
         return await _orderService.GetAllOrdersAsync();
     }
 
     [HttpGet("{id}")]
-    public async Task<Order> GetOrder(int id)
+    public async Task<OrderEntity> GetOrder(int id)
     {
         return await _orderService.GetOrderAsync(id);
     }
 
     [HttpPost("CreateOrder")]
-    public async Task<IActionResult> CreateOrder([FromBody] Order order)
+    public async Task<IActionResult> CreateOrder([FromBody] OrderEntity entity)
     {
-        await _orderService.CreateOrderAsync(order);
+        await _orderService.CreateOrderAsync(entity);
         return Ok();
     }
 }

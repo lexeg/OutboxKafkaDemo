@@ -8,46 +8,46 @@ namespace OutboxKafka.DataAccess.Repositories;
 public class OutboxMessageRepository : IOutboxMessageRepository
 {
     private readonly ApplicationDbContext _context;
-    private IReadOnlyCollection<OutboxMessage> _outboxMessages;
+    private IReadOnlyCollection<OutboxMessageEntity> _outboxMessages;
 
     public OutboxMessageRepository(ApplicationDbContext context)
     {
         _context = context;
     }
 
-    public IReadOnlyCollection<OutboxMessage> OutboxMessages
+    public IReadOnlyCollection<OutboxMessageEntity> OutboxMessages
     {
         get
         {
             return _outboxMessages ??= new
-                ReadOnlyCollection<OutboxMessage>
+                ReadOnlyCollection<OutboxMessageEntity>
                 (_context.OutboxMessages.ToList());
         }
     }
 
-    public async Task<IReadOnlyCollection<OutboxMessage>> GetUnsentMessagesAsync()
+    public async Task<IReadOnlyCollection<OutboxMessageEntity>> GetUnsentMessagesAsync()
     {
         var unsentMessages = await _context.OutboxMessages.Where(e => e.IsMessageDispatched != true).ToListAsync();
-        var result = new ReadOnlyCollection<OutboxMessage>(unsentMessages);
+        var result = new ReadOnlyCollection<OutboxMessageEntity>(unsentMessages);
         return result;
     }
 
-    public async Task<IReadOnlyCollection<OutboxMessage>> GetMessagesByIdsAsync(IEnumerable<int> ids)
+    public async Task<IReadOnlyCollection<OutboxMessageEntity>> GetMessagesByIdsAsync(IEnumerable<int> ids)
     {
         var orders = await _context.OutboxMessages.ToListAsync();
-        return new ReadOnlyCollection<OutboxMessage>(orders);
+        return new ReadOnlyCollection<OutboxMessageEntity>(orders);
     }
 
-    public async Task UpdateAsync(OutboxMessage message, bool status)
+    public async Task UpdateAsync(OutboxMessageEntity entity, bool status)
     {
-        var entity = _context.OutboxMessages.FirstOrDefault(o => o.Id == message.Id);
+        var messageEntity = _context.OutboxMessages.FirstOrDefault(o => o.Id == entity.Id);
 
-        if (entity != null)
+        if (messageEntity != null)
         {
-            entity.Id = message.Id;
-            entity.Date = message.Date;
-            entity.Payload = message.Payload;
-            entity.IsMessageDispatched = message.IsMessageDispatched;
+            messageEntity.Id = entity.Id;
+            messageEntity.Date = entity.Date;
+            messageEntity.Payload = entity.Payload;
+            messageEntity.IsMessageDispatched = entity.IsMessageDispatched;
             await _context.SaveChangesAsync();
         }
     }

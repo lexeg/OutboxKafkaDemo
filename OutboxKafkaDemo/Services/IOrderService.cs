@@ -4,7 +4,7 @@ namespace OutboxKafkaDemo.Services;
 
 public interface IOrderService
 {
-    public Task<List<Order>> GetAllOrdersAsync();
-    public Task<Order> GetOrderAsync(int Id);
-    public Task CreateOrderAsync(Order order);
+    public Task<List<OrderEntity>> GetAllOrdersAsync();
+    public Task<OrderEntity> GetOrderAsync(int Id);
+    public Task CreateOrderAsync(OrderEntity entity);
 }
