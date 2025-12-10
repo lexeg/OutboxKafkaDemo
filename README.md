@@ -18,3 +18,9 @@ curl --location 'http://localhost:5014/api/Order/CreateOrder' \
 создать из консоли topic:
 docker exec -it broker kafka-topics --create --topic order-events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 docker exec -it broker kafka-topics --create --topic test --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+
+
+TODO: попробовать на практике следующие ссылки:
+- https://www.youtube.com/watch?v=IfSnfJmbDHA
+- https://www.youtube.com/watch?v=L-ACoW1Dl_w
