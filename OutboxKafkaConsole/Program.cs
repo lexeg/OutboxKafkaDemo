@@ -38,7 +38,7 @@ class Program
 
     private static async Task SendMessages(string createOrderRequest, List<string> messages)
     {
-        var chunks = Enumerable.Range(1, messages.Count).Chunk(messages.Count / Environment.ProcessorCount);
+        var chunks =  Enumerable.Range(1, messages.Count).Chunk(messages.Count / Environment.ProcessorCount);
         var tasks = chunks.Select(chunk => Send(createOrderRequest, messages, chunk)).ToList();
         await Task.WhenAll(tasks);
     }

@@ -30,9 +30,11 @@ public class OrderService : IOrderService
         {
             _context.Orders.Add(entity);
             await _context.SaveChangesAsync();
+            
 
             var outboxMessageEntity = new OutboxMessageEntity
-            {
+            {                
+                Id = entity.Id,
                 Payload = JsonSerializer.Serialize(entity),
                 Date = DateTime.Now,
                 IsMessageDispatched = false
