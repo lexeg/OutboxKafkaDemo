@@ -13,6 +13,6 @@ public class Order
     [JsonPropertyName("Order_Date")]
     public DateTime OrderDate { get; set; }
 
-    [JsonPropertyName("Order_Date")]
+    [JsonPropertyName("Order_Amount")]
     public int Amount { get; set; }
 }
